@@ -1,6 +1,15 @@
 import React from 'react';
 import './App.scss';
+import io from 'socket.io-client';
 import { Chat } from './components/Chat';
+
+// eslint-disable-next-line no-unused-vars
+const socket = io('http://localhost:3000', {
+  withCredentials: true,
+  extraHeaders: {
+    key: 'chat',
+  },
+});
 
 export const App = () => (
   <div className="page">
