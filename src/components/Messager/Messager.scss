@@ -1,9 +1,9 @@
-.chat {
+.messager {
   display: grid;
   grid-template-columns: 3fr 1fr;
   height: 100%;
 
-  &-wrp {
+  &__chat-wrp {
     height: inherit;
     background-color: khaki;
   }

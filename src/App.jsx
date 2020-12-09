@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import './App.scss';
-import { Chat } from './components/Chat';
+import { Messager } from './components/Messager/Messager';
 import { ContactsProvider } from './contexts/ContactsProvider';
 import { SocketProvider } from './contexts/SocketProvider';
 import { randomNameGenerator } from './helpers/randomNameGenerator';
@@ -10,6 +10,7 @@ export const App = () => {
   const [user, setUser] = useLocalStorage('user', {
     id: Date.now(),
     name: randomNameGenerator(),
+    img: 'https://img.icons8.com/dusk/64/000000/change-user-male.png',
     messages: [],
   });
 
@@ -28,7 +29,7 @@ export const App = () => {
             <h1 className="page__title">Chat bots 2.0</h1>
           </div>
           <div className="page__body">
-            <Chat user={user} addMessage={addMessage} />
+            <Messager user={user} addMessage={addMessage} />
           </div>
         </div>
       </ContactsProvider>

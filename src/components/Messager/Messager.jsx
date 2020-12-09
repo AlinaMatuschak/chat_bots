@@ -2,14 +2,14 @@ import React from 'react';
 import { useContacts } from '../../contexts/ContactsProvider';
 import { MessageForm } from '../MessageForm/MessageForm';
 import { Sidebar } from '../Sidebar';
-import './Chat.scss';
+import './Messager.scss';
 
-export const Chat = ({ user, addMessage }) => {
+export const Messager = ({ user, addMessage }) => {
   const { selectedContactId } = useContacts();
 
   return (
-    <div className="chat">
-      <div className="chat-wrp">
+    <div className="messager">
+      <div className="messager__chat-wrp">
         {selectedContactId
           && <MessageForm user={user} addMessage={addMessage} />}
       </div>

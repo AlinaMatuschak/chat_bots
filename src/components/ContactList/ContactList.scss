@@ -1,37 +1,11 @@
-.chat-list {
-  position: relative;
-  background-color: #fff;
-
-  &__controlers {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: 40px;
-  }
-
-  &__button {
-    font-size: 14px;
-    color: #777;
-    border: 1px solid #ddd;
+.contact-list {
+  &__item {
+    height: 70px;
+    padding: 0 12px;
     cursor: pointer;
 
     &--active {
-      border-width: 0;
-      background-color: #fff;
+      background-color: #f8f8f8;
     }
-  }
-
-  &__chats {
-    height: 83%;
-  }
-
-  &__search {
-    position: absolute;
-    left: 50%;
-    bottom: 30px;
-    padding-left: 10px;
-    height: 40px;
-    width: 80%;
-    font-size: 14px;
-    transform: translateX(-50%);
   }
 }

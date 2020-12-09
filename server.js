@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     return;
   }
 
-  const { id, name } = user;
+  const { id, name, img } = user;
 
   socket.join(id);
 
@@ -29,6 +29,7 @@ io.on('connection', (socket) => {
     users.push({
       id,
       name,
+      img,
     });
   }
 

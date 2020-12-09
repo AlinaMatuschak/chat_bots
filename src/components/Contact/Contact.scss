@@ -1,0 +1,42 @@
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: inherit;
+  background-color: transparent;
+
+  &__img-wrp {
+    position: relative;
+    height: 60px;
+    width: 60px;
+  }
+
+  &__img {
+    width: inherit;
+    height: inherit;
+    border-radius: 5px;
+  }
+
+  &__online {
+    position: absolute;
+    top: 93%;
+    right: 6%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #20d63e;
+    transform: translate(50%, -50%);
+  }
+
+  &__inf {
+    width: calc(100% - 84px);
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+
+  &__description {
+    color: #999;
+  }
+}

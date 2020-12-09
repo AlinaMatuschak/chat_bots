@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContacts } from '../../contexts/ContactsProvider';
+import { Contact } from '../Contact/Contact';
 import './ContactList.scss';
 
 export const ContactList = () => {
@@ -22,7 +23,7 @@ export const ContactList = () => {
           }}
           aria-hidden="true"
         >
-          {contact.name}
+          <Contact contact={contact} />
         </li>
       ))}
     </ul>
