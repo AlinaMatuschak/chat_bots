@@ -26,6 +26,10 @@ export function ContactsProvider({ children }) {
       setContacts(socketContacts);
     });
 
+    socket.on('update-users', (socketContacts) => {
+      setContacts(socketContacts);
+    });
+
     // eslint-disable-next-line consistent-return
     return () => socket.off('contacts');
   }, [socket, setContacts]);

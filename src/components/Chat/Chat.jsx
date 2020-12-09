@@ -4,13 +4,14 @@ import { MessageForm } from '../MessageForm/MessageForm';
 import { Sidebar } from '../Sidebar';
 import './Chat.scss';
 
-export const Chat = () => {
+export const Chat = ({ user, addMessage }) => {
   const { selectedContactId } = useContacts();
 
   return (
     <div className="chat">
       <div className="chat-wrp">
-        {selectedContactId && <MessageForm />}
+        {selectedContactId
+          && <MessageForm user={user} addMessage={addMessage} />}
       </div>
       <Sidebar />
     </div>
