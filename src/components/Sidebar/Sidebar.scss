@@ -1,0 +1,37 @@
+.sidebar {
+  position: relative;
+  background-color: #fff;
+
+  &__controlers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 40px;
+  }
+
+  &__button {
+    font-size: 14px;
+    color: #777;
+    border: 1px solid #ddd;
+    cursor: pointer;
+
+    &--active {
+      border-width: 0;
+      background-color: #fff;
+    }
+  }
+
+  &__chats {
+    height: 83%;
+  }
+
+  &__search {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    padding-left: 10px;
+    height: 40px;
+    width: 80%;
+    font-size: 14px;
+    transform: translateX(-50%);
+  }
+}

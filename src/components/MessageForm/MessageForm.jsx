@@ -1,5 +1,4 @@
 import React from 'react';
-// import { sendMes } from '../../socket';
 import './MessageForm.scss';
 
 export const MessageForm = () => (
@@ -11,8 +10,8 @@ export const MessageForm = () => (
     </div>
     <div className="message-form__messages">
       {/* {sendMes('/', (req, res) => {
-        res.send('<h1>Hello world</h1>');
-      })} */}
+          res.send('<h1>Hello world</h1>');
+        })} */}
     </div>
     <form className="message-form__form">
       <input

@@ -1,20 +1,18 @@
 import React from 'react';
-import io from 'socket.io-client';
-import { ChatList } from '../ChatList/ChatList';
+import { useContacts } from '../../contexts/ContactsProvider';
 import { MessageForm } from '../MessageForm/MessageForm';
+import { Sidebar } from '../Sidebar';
 import './Chat.scss';
 
-// eslint-disable-next-line no-unused-vars
-const socket = io('http://localhost:3000', {
-  withCredentials: true,
-  extraHeaders: {
-    key: 'chat',
-  },
-});
+export const Chat = () => {
+  const { selectedContactId } = useContacts();
 
-export const Chat = () => (
-  <div className="chat">
-    <MessageForm />
-    <ChatList />
-  </div>
-);
+  return (
+    <div className="chat">
+      <div className="chat-wrp">
+        {selectedContactId && <MessageForm />}
+      </div>
+      <Sidebar />
+    </div>
+  );
+};
