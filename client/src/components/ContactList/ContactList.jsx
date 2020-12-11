@@ -3,9 +3,8 @@ import { useContacts } from '../../contexts/ContactsProvider';
 import { Contact } from '../Contact/Contact';
 import './ContactList.scss';
 
-export const ContactList = () => {
+export const ContactList = ({ contacts }) => {
   const {
-    contacts,
     selectContact,
     selectedContact,
   } = useContacts();

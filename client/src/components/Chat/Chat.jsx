@@ -1,4 +1,5 @@
 import React, { createRef, useCallback, useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { useContacts } from '../../contexts/ContactsProvider';
 import { useSocket } from '../../contexts/SocketProvider';
 import './Chat.scss';
@@ -52,7 +53,7 @@ export const Chat = ({ user }) => {
 
   const getContactMessages = useCallback(() => messages
     .filter(userMessage => userMessage.recipient === selectedContact.id
-        || userMessage.sender === selectedContact.id),
+      || userMessage.sender === selectedContact.id),
   [messages, selectedContact]);
 
   const scrollToBottom = useCallback(() => {
@@ -86,15 +87,26 @@ export const Chat = ({ user }) => {
             ref={allMessages.length - 1 === i ? lastMessage : null}
             // eslint-disable-next-line react/no-array-index-key
             key={i}
-            className="chat__message message"
+            className={classNames('chat__message', 'message', {
+              'message--from-me': chatMessage.sender === user.id,
+            })}
           >
             <div className="message__head">
-              <p className="message__sender">{chatMessage.sender}</p>
+              <p className="message__sender">
+                {chatMessage.sender === selectedContact.id
+                  ? selectedContact.name
+                  : user.name
+                }
+              </p>
               <span className="message__date">{chatMessage.date}</span>
             </div>
             <div className="message__text-wrp">
               <span className="message__text">{chatMessage.text}</span>
-              <span className="message__poiter" />
+              <span
+                className={classNames('message__poiter', {
+                  'message__poiter--right': chatMessage.sender === user.id,
+                })}
+              />
             </div>
           </div>
         ))}

@@ -9,6 +9,10 @@
   }
 
   &__messages {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
     height: 60%;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -65,9 +69,14 @@
 }
 
 .message {
-  background-color: #f4f8fb;
+  background-color: #becbd9;
   border-radius: 7px;
   filter: drop-shadow(2.5px 4.33px 4px rgba(0,1,1,0.21));
+
+  &--from-me {
+    align-self: flex-end;
+    background-color: #f0cbb3;
+  }
 
   &__head {
     display: flex;
@@ -75,11 +84,12 @@
     align-items: center;
     height: 36px;
     padding: 0 18px;
-    background-color: #becbd9;
   }
 
   &__text-wrp {
     position: relative;
+    border-radius: 0 0 7px 7px;
+    background-color: #f4f8fb;
   }
 
   &__text {
@@ -96,5 +106,9 @@
     height: 15px;
     background-color: #f4f8fb;
     transform: rotate(45deg) translateY(-50%);
+
+    &--right {
+      right: 0%;
+    }
   }
 }

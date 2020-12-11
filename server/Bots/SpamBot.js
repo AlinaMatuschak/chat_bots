@@ -14,7 +14,7 @@ const SpamBot = {
 
 const spamBotStartSendMessage = (socket, user) => {
   const message = {
-    sender: 'SpamBot',
+    sender: SpamBot.id,
     recipient: user.id,
     text: getRandomLink(),
     date: getDate(),

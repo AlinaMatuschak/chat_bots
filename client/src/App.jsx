@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import './App.scss';
@@ -15,13 +15,6 @@ export const App = () => {
     name: randomNameGenerator(),
     img: 'https://img.icons8.com/dusk/64/000000/change-user-male.png',
   });
-
-  // const addMessage = useCallback((message) => {
-  //   setUser(currentUser => ({
-  //     ...currentUser,
-  //     messages: [...currentUser.messages, message],
-  //   }));
-  // }, [setUser]);
 
   return (
     <SocketProvider user={user}>

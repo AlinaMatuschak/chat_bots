@@ -7,6 +7,7 @@ const EchoBot = {
   isOnline: true,
   img: 'https://i.ibb.co/S78LCv9/Layer-1.png',
   type: 'bot',
+  messages: []
 }
 
 const EchoBotGenerateMessage = (text, recipient) => {
