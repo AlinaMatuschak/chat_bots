@@ -19,7 +19,7 @@ export const Contact = ({ contact }) => {
         <p className="contact__name">{name}</p>
         {description && (
           <span className="contact__description">
-            {description}
+            {`${[...description].slice(0, 25).join('')}...`}
           </span>
         )}
       </div>

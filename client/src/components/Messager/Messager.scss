@@ -1,10 +1,15 @@
 .messager {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+  display: flex;
   height: 100%;
 
   &__chat-wrp {
     height: inherit;
+    width: calc(100% - 260px);
     background-color: khaki;
+  }
+
+  &__sidebar-wrp {
+    width: 260px;
+    height: 100%;
   }
 }

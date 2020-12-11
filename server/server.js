@@ -1,4 +1,9 @@
 const express = require('express');
+const getDate = require('./getDate');
+const EchoBot = require('./Bots/EchoBot');
+const ReverseBot = require('./Bots/ReverseBot');
+const SpamBot = require('./Bots/SpamBot');
+const spamBotSendMessage = require('./Bots/spamBotSendMessage');
 
 const app = express();
 const server = require('http').Server(app);
@@ -10,9 +15,12 @@ const io = require('socket.io')(server, {
   },
 });
 
-let users = [];
-// eslint-disable-next-line no-unused-vars
-const messages = [];
+const PORT = 3000;
+let users = [
+  EchoBot,
+  ReverseBot,
+  SpamBot
+];
 
 io.on('connection', (socket) => {
   const user = socket.handshake.query;
@@ -21,16 +29,13 @@ io.on('connection', (socket) => {
     return;
   }
 
-  const { id, name, img } = user;
+  const { id } = user;
+  const isDefinedUser = users.some(currentUser => id === currentUser.id);
 
   socket.join(id);
 
-  if (!users.some(currentUser => id === currentUser.id)) {
-    users.push({
-      id,
-      name,
-      img,
-    });
+  if (!isDefinedUser) {
+    users.push(user);
   }
 
   users.forEach((socketUser) => {
@@ -48,12 +53,58 @@ io.on('connection', (socket) => {
     });
   }
 
-  socket.on('send-message', ({ message, recipient }) => {
-    socket.to(recipient).emit('receive-message', {
+  setInterval(() => {
+    spamBotSendMessage(socket, id);
+  }, 1000);
+
+  socket.on('send-message', ({ text, recipient }) => {
+    const message = {
       sender: id,
-      recipient,
-      text: message,
-    });
+      recipient: recipient.id,
+      text,
+      date: getDate(),
+    }
+
+    user.messages = [ ...user.messages, message ];
+
+    socket.emit('receive-message', message);
+
+    if (recipient.type === 'bot') {
+      switch (recipient.name) {
+        case 'EchoBot': {
+          console.log('send');
+
+          socket.emit('receive-message', {
+            sender: recipient.id,
+            recipient: id,
+            text,
+            date: getDate(),
+          });
+
+          break;
+        }
+
+        case 'ReverseBot': {
+          setTimeout(() => {
+            socket.emit('receive-message', {
+              sender: recipient.id,
+              recipient: id,
+              text: [...text].reverse().join(''),
+              date: getDate(),
+            });
+          }, 3000);
+
+          break;
+        }
+      }
+    } else {
+      socket.to(recipient.id).emit('receive-message', {
+        sender: id,
+        recipient: recipient.id,
+        text,
+        date: getDate(),
+      });
+    }
   });
 
   socket.on('disconnect', (reason) => {
@@ -68,8 +119,6 @@ io.on('connection', (socket) => {
     });
   });
 });
-
-const PORT = 3000;
 
 server.listen(PORT, (err) => {
   if (err) {

@@ -1,0 +1,100 @@
+.chat {
+  position: relative;
+  height: inherit;
+  background-color: #d7dfe7;
+
+  &__detail {
+    height: 170px;
+    background-color: #becbd9;
+  }
+
+  &__messages {
+    height: 60%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  &__form {
+    position: absolute;
+    bottom: 30px;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    gap: 10px;
+    height: 40px;
+    width: 100%;
+    padding: 0 20px 0 10px;
+  }
+
+  &__input {
+    height: 100%;
+    padding-left: 10px;
+    font-size: 14px;
+    border-width: 0;
+    border-radius: 5px;
+  }
+
+  &__button {
+    height: 100%;
+    color: #fff;
+    font-size: 13px;
+    background-color: #428bca;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__message {
+    display: inline-block;
+    width: 66%;
+    min-height: 79px;
+    margin: 20px;
+  }
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  
+  &__img {
+    width: inherit;
+    height: inherit;
+  }
+
+  &__inf {
+    padding: 15px 20px;
+  }
+}
+
+.message {
+  background-color: #f4f8fb;
+  border-radius: 7px;
+  filter: drop-shadow(2.5px 4.33px 4px rgba(0,1,1,0.21));
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    padding: 0 18px;
+    background-color: #becbd9;
+  }
+
+  &__text-wrp {
+    position: relative;
+  }
+
+  &__text {
+    display: inline-block;
+    padding: 15px 18px;
+    overflow-wrap: anywhere;
+  }
+
+  &__poiter {
+    position: absolute;
+    top: 50%;
+    right: 99%;
+    width: 15px;
+    height: 15px;
+    background-color: #f4f8fb;
+    transform: rotate(45deg) translateY(-50%);
+  }
+}

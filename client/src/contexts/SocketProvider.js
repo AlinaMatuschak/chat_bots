@@ -21,15 +21,6 @@ export function SocketProvider({ user, children }) {
     return () => newSocket.close();
   }, [user]);
 
-  // useEffect(() => {
-  //   socket.on('disconnect', (reason) => {
-  //     setUser(currentUser => ({
-  //       ...currentUser,
-  //       isOnline: false,
-  //     }));
-  //   });
-  // }, [socket, setUser]);
-
   return (
     <SocketContext.Provider value={socket}>
       {children}

@@ -6,8 +6,8 @@ import './ContactList.scss';
 export const ContactList = () => {
   const {
     contacts,
-    selectContactId,
-    selectedContactId,
+    selectContact,
+    selectedContact,
   } = useContacts();
 
   return (
@@ -15,11 +15,12 @@ export const ContactList = () => {
       {contacts.map(contact => (
         <li
           key={contact.id}
-          className={`contact-list__item ${selectedContactId === contact.id
+          className={`contact-list__item ${selectedContact
+            && selectedContact.id === contact.id
             ? 'contact-list__item--active'
             : ''}`}
           onClick={() => {
-            selectContactId(contact.id);
+            selectContact(contact);
           }}
           aria-hidden="true"
         >

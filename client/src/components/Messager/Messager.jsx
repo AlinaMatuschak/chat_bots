@@ -1,19 +1,21 @@
 import React from 'react';
 import { useContacts } from '../../contexts/ContactsProvider';
-import { MessageForm } from '../MessageForm/MessageForm';
+import { Chat } from '../Chat/Chat';
 import { Sidebar } from '../Sidebar';
 import './Messager.scss';
 
 export const Messager = ({ user, addMessage }) => {
-  const { selectedContactId } = useContacts();
+  const { selectedContact } = useContacts();
 
   return (
     <div className="messager">
       <div className="messager__chat-wrp">
-        {selectedContactId
-          && <MessageForm user={user} addMessage={addMessage} />}
+        {selectedContact
+          && <Chat user={user} addMessage={addMessage} />}
       </div>
-      <Sidebar />
+      <div className="messager__sidebar-wrp">
+        <Sidebar />
+      </div>
     </div>
   );
 };

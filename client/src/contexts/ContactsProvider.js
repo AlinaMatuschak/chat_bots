@@ -14,7 +14,7 @@ export function useContacts() {
 
 export function ContactsProvider({ children }) {
   const [contacts, setContacts] = useState([]);
-  const [selectedContactId, setSelectedContactId] = useState(null);
+  const [selectedContact, setSelectedContact] = useState(null);
   const socket = useSocket();
 
   useEffect(() => {
@@ -36,9 +36,9 @@ export function ContactsProvider({ children }) {
 
   const value = useMemo(() => ({
     contacts,
-    selectContactId: setSelectedContactId,
-    selectedContactId,
-  }), [contacts, setSelectedContactId, selectedContactId]);
+    selectContact: setSelectedContact,
+    selectedContact,
+  }), [contacts, setSelectedContact, selectedContact]);
 
   return (
     <ContactsContext.Provider value={value}>
