@@ -3,27 +3,33 @@ import { useContacts } from '../../contexts/ContactsProvider';
 import { useSocket } from '../../contexts/SocketProvider';
 import './Chat.scss';
 
-export const Chat = ({ user, addMessage }) => {
+export const Chat = ({ user }) => {
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
   const socket = useSocket();
   const { selectedContact } = useContacts();
   const lastMessage = createRef();
+
+  useEffect(() => {
+    socket.emit('get-messages', selectedContact);
+  }, [selectedContact]);
 
   useEffect(() => {
     if (socket == null) {
       return;
     }
 
-    socket.on('receive-message', (newMessage) => {
-      addMessage(newMessage);
+    socket.on('get-messages', (messagesFromServer) => {
+      setMessages(messagesFromServer);
     });
 
-    // eslint-disable-next-line no-console
-    console.log(user.messages);
+    socket.on('receive-message', (newMessage) => {
+      setMessages(currentMessages => [...currentMessages, newMessage]);
+    });
 
     // eslint-disable-next-line consistent-return
     return () => socket.off('receive-message');
-  }, [socket, addMessage]);
+  }, [socket]);
 
   useEffect(() => {
     scrollToBottom();
@@ -37,17 +43,17 @@ export const Chat = ({ user, addMessage }) => {
     event.preventDefault();
 
     socket.emit('send-message', {
-      text: message, recipient: selectedContact,
+      text: message,
+      recipient: selectedContact,
     });
 
     setMessage('');
-  }, [addMessage, message]);
+  }, [setMessages, message]);
 
-  const getContactMessages = useCallback(() => user
-    .messages
+  const getContactMessages = useCallback(() => messages
     .filter(userMessage => userMessage.recipient === selectedContact.id
         || userMessage.sender === selectedContact.id),
-  [user, selectedContact]);
+  [messages, selectedContact]);
 
   const scrollToBottom = useCallback(() => {
     if (!lastMessage.current) {
@@ -75,9 +81,9 @@ export const Chat = ({ user, addMessage }) => {
         </div>
       </div>
       <div className="chat__messages">
-        {getContactMessages().map((chatMessage, i, messages) => (
+        {getContactMessages().map((chatMessage, i, allMessages) => (
           <div
-            ref={messages.length - 1 === i ? lastMessage : null}
+            ref={allMessages.length - 1 === i ? lastMessage : null}
             // eslint-disable-next-line react/no-array-index-key
             key={i}
             className="chat__message message"

@@ -1,0 +1,47 @@
+function getRandomLink() {
+  const links = [
+    'http://ororo.tv/',
+    'http://show-english.com/',
+    'http://www.hamatata.com/',
+    'http://www.bbc.co.uk/radio',
+    'http://begin-english.ru/radio',
+    'http://learnenglish.britishcouncil.org/en/',
+    'http://teacherluke.co.uk/',
+    'http://playphrase.me/',
+    'http://lyricstraining.com/',
+    'http://spotlightenglish.com/',
+    'http://www.englishcentral.com/',
+    'http://www.todayifoundout.com/',
+    'http://itotd.com/',
+    'http://www.npr.org/',
+    'https://signalvnoise.com/posts/3849-easy-listening',
+    'http://www.homeenglish.ru/Lessonsaudio.htm',
+    'http://www.talkenglish.com/',
+    'http://www.china232.com/',
+    'https://librivox.org/',
+    'http://esl-bits.net/ESL.English.Learning.Audiobooks/ESL.English.Learning.Audiobooks.html',
+    'http://wordmemo.ru/',
+    'http://wordsfromtext.com/',
+    'http://getparalleltranslations.com/',
+    'http://www.newsinlevels.com/',
+    'http://www.readtheory.org/',
+    'http://americanliterature.com/',
+    'http://english-e-books.net/',
+    'http://do-you-speak.ru/',
+    'http://lingvo.asu.ru/english/texts/',
+    'http://www.ego4u.com/',
+    'https://www.amilingo.com/',
+    'http://www.mylanguageexchange.com/',
+    'http://real-english.com/',
+    'https://www.youtube.com/user/krutopridumal',
+    'https://www.youtube.com/user/philochkoPhilochko',
+    'http://https//www.youtube.com/user/EnglishGermanSpanish',
+    'http://https//www.youtube.com/user/EnglishGermanSpanish',
+    'http://www.youtube.com/user/twominenglish',
+    'http://www.youtube.com/user/TomSka/featured',
+  ];
+
+  return links[Math.floor(Math.random() * (links.length - 1))];
+};
+
+module.exports = getRandomLink;
