@@ -1,0 +1,19 @@
+.toggle-sidebar {
+  width: inherit;
+  height: inherit;
+  background-color: transparent;
+  transition: opacity 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &__img {
+    width: inherit;
+  }
+}

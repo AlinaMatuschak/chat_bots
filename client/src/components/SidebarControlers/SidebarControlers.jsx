@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import './SidebarControlers.scss';
 
-export const SidebarControlers = ({ visibleValue, onClick }) => {
+export const SidebarControlers = memo(({ visibleValue, onClick }) => {
   const handleClick = useCallback(({ target }) => {
     onClick(target.value);
   }, [onClick]);
@@ -31,4 +31,4 @@ export const SidebarControlers = ({ visibleValue, onClick }) => {
       </button>
     </div>
   );
-};
+});

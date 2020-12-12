@@ -1,0 +1,52 @@
+.message {
+  color: #354659;
+  font-weight: bold;
+  background-color: #becbd9;
+  border-radius: 7px;
+  filter: drop-shadow(2.5px 4.33px 4px rgba(0,1,1,0.21));
+
+  &--from-me {
+    align-self: flex-end;
+    color: #814d2d;
+    background-color: #f0cbb3;
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    padding: 0 18px;
+  }
+
+  &__date {
+    opacity: 0.5;
+  }
+
+  &__text-wrp {
+    position: relative;
+    color: #4a4d52;
+    border-radius: 0 0 7px 7px;
+    background-color: #f4f8fb;
+  }
+
+  &__text {
+    display: inline-block;
+    padding: 15px 18px;
+    overflow-wrap: anywhere;
+  }
+
+  &__poiter {
+    position: absolute;
+    top: 50%;
+    right: 99%;
+    width: 15px;
+    height: 15px;
+    background-color: #f4f8fb;
+    transform: rotate(45deg) translateY(-50%);
+
+    &--right {
+      right: 0%;
+    }
+  }
+}

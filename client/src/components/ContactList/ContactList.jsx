@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
+import classNames from 'classnames';
 import { useContacts } from '../../contexts/ContactsProvider';
 import { Contact } from '../Contact/Contact';
 import './ContactList.scss';
 
-export const ContactList = ({ contacts }) => {
+export const ContactList = memo(({ contacts, hideSidebar }) => {
   const {
     selectContact,
     selectedContact,
   } = useContacts();
+
+  const isActiveContact = useCallback(
+    id => selectedContact && selectedContact.id === id,
+    [selectedContact],
+  );
 
   return (
     <ul className="contact-list">
       {contacts.map(contact => (
         <li
           key={contact.id}
-          className={`contact-list__item ${selectedContact
-            && selectedContact.id === contact.id
-            ? 'contact-list__item--active'
-            : ''}`}
+          className={classNames('contact-list__item', {
+            'contact-list__item--active': isActiveContact(contact.id),
+          })}
           onClick={() => {
             selectContact(contact);
+            hideSidebar();
           }}
           aria-hidden="true"
         >
@@ -28,4 +34,4 @@ export const ContactList = ({ contacts }) => {
       ))}
     </ul>
   );
-};
+});

@@ -1,6 +1,11 @@
 .messager {
   display: flex;
   height: 100%;
+  overflow: hidden;
+
+  &__toggle-sidebar {
+    display: none;
+  }
 
   &__chat-wrp {
     height: inherit;
@@ -11,5 +16,42 @@
   &__sidebar-wrp {
     width: 260px;
     height: 100%;
+  }
+
+  @media (max-width: 1020px) {
+    position: relative;
+
+    &__toggle-sidebar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      z-index: 1;
+    }
+
+    &__chat-wrp {
+      width: 100%;
+    }
+
+    &__sidebar-wrp {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+
+      &--visible {
+        z-index: 1;
+      }
+    }
+  }
+
+  @media (max-width: 670px) {
+    &__toggle-sidebar {
+      top: 10px;
+    }
   }
 }

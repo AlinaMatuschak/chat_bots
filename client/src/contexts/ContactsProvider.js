@@ -15,19 +15,18 @@ export function useContacts() {
 export function ContactsProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
-  const socket = useSocket();
+  const { socket, events: { EVENT_GET_CONTACTS } } = useSocket();
 
   useEffect(() => {
     if (!socket) {
       return;
     }
 
-    socket.on('contacts', (socketContacts) => {
+    socket.on(EVENT_GET_CONTACTS, (socketContacts) => {
       setContacts(socketContacts);
     });
 
-    // eslint-disable-next-line consistent-return
-    return () => socket.off('contacts');
+    return () => socket.off(EVENT_GET_CONTACTS);
   }, [socket, setContacts]);
 
   const value = useMemo(() => ({

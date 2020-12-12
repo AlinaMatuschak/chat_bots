@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { getFirstSymbols } from '../../helpers/getFirstSymbols';
 import './Contact.scss';
 
-export const Contact = ({ contact }) => {
+export const Contact = memo(({ contact }) => {
   const { name, img, description, isOnline } = contact;
 
   return (
@@ -19,10 +20,10 @@ export const Contact = ({ contact }) => {
         <p className="contact__name">{name}</p>
         {description && (
           <span className="contact__description">
-            {`${[...description].slice(0, 25).join('')}...`}
+            {getFirstSymbols(description)}
           </span>
         )}
       </div>
     </div>
   );
-};
+});

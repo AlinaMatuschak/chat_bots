@@ -3,5 +3,6 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-plusplus': 'off',
+    'consistent-return': 'off',
   },
 };

@@ -1,25 +1,22 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, memo } from 'react';
 import { useContacts } from '../../contexts/ContactsProvider';
 import { isIncludeSubstring } from '../../helpers/isIncludeSubstring';
 import { ContactList } from '../ContactList';
 import { SidebarControlers } from '../SidebarControlers/SidebarControlers';
 import './Sidebar.scss';
 
-export const Sidebar = () => {
+export const Sidebar = memo(({ hideSidebar }) => {
   const [visibleValue, setVisibleValue] = useState('online');
   const [searchValue, setSearchValue] = useState('');
   const { contacts } = useContacts();
   const showContacts = useMemo(() => {
     if (visibleValue === 'all') {
       return contacts
-        .filter(({ name, description }) => isIncludeSubstring(name, searchValue)
-          || isIncludeSubstring(description || '', searchValue));
+        .filter(({ name }) => isIncludeSubstring(name, searchValue));
     }
 
-    return contacts.filter(({ name, description, isOnline }) => isOnline && (
-      isIncludeSubstring(name, searchValue)
-      || isIncludeSubstring(description || '', searchValue)
-    ));
+    return contacts.filter(({ name, isOnline }) => isOnline
+      && isIncludeSubstring(name, searchValue));
   }, [visibleValue, contacts, isIncludeSubstring, searchValue]);
 
   const handleChange = useCallback(({ target }) => {
@@ -28,13 +25,18 @@ export const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <SidebarControlers
-        visibleValue={visibleValue}
-        onClick={setVisibleValue}
-      />
+      <div className="sidebar__controlers">
+        <SidebarControlers
+          visibleValue={visibleValue}
+          onClick={setVisibleValue}
+        />
+      </div>
 
       <div className="sidebar__chats">
-        <ContactList contacts={showContacts} />
+        <ContactList
+          contacts={showContacts}
+          hideSidebar={hideSidebar}
+        />
       </div>
 
       <input
@@ -45,4 +47,4 @@ export const Sidebar = () => {
       />
     </div>
   );
-};
+});

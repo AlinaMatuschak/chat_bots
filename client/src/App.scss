@@ -17,4 +17,12 @@
     padding: 20px 80px 50px;
     background-color: #586670;
   }
+
+  @media (max-width: 800px) {
+    &__body {
+      height: 90vh;
+      padding: 20px 10px 20px;
+      background-color: #586670;
+    }
+  }
 }

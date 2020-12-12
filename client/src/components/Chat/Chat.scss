@@ -1,11 +1,9 @@
 .chat {
-  position: relative;
   height: inherit;
   background-color: #d7dfe7;
 
   &__detail {
     height: 170px;
-    background-color: #becbd9;
   }
 
   &__messages {
@@ -13,102 +11,55 @@
     flex-direction: column;
     align-items: start;
     justify-content: end;
-    height: 60%;
+    height: calc(100% - 170px - 60px);
     overflow-y: auto;
     scroll-behavior: smooth;
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #becbd9;
+    }
+
+    &::-webkit-scrollbar {
+      width: 15px;
+      background-color: #becbd9;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #9daab9;
+    }
   }
 
   &__form {
-    position: absolute;
-    bottom: 30px;
-    display: grid;
-    grid-template-columns: 9fr 3fr;
-    gap: 10px;
     height: 40px;
     width: 100%;
-    padding: 0 20px 0 10px;
-  }
-
-  &__input {
-    height: 100%;
-    padding-left: 10px;
-    font-size: 14px;
-    border-width: 0;
-    border-radius: 5px;
-  }
-
-  &__button {
-    height: 100%;
-    color: #fff;
-    font-size: 13px;
-    background-color: #428bca;
-    border-radius: 5px;
-    cursor: pointer;
   }
 
   &__message {
     display: inline-block;
     width: 66%;
-    min-height: 79px;
+    // min-height: 79px;
     margin: 20px;
   }
-}
 
-.detail {
-  display: grid;
-  grid-template-columns: 170px 1fr;
-  
-  &__img {
-    width: inherit;
-    height: inherit;
+  @media (max-width: 800px) {
+    font-size: 11px;
   }
 
-  &__inf {
-    padding: 15px 20px;
-  }
-}
+  @media (max-width: 670px) {
+    &__detail {
+      height: 50px;
+    }
 
-.message {
-  background-color: #becbd9;
-  border-radius: 7px;
-  filter: drop-shadow(2.5px 4.33px 4px rgba(0,1,1,0.21));
+    &__messages {
+      height: calc(100% - 50px - 60px);
+    }
 
-  &--from-me {
-    align-self: flex-end;
-    background-color: #f0cbb3;
-  }
-
-  &__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 36px;
-    padding: 0 18px;
-  }
-
-  &__text-wrp {
-    position: relative;
-    border-radius: 0 0 7px 7px;
-    background-color: #f4f8fb;
-  }
-
-  &__text {
-    display: inline-block;
-    padding: 15px 18px;
-    overflow-wrap: anywhere;
-  }
-
-  &__poiter {
-    position: absolute;
-    top: 50%;
-    right: 99%;
-    width: 15px;
-    height: 15px;
-    background-color: #f4f8fb;
-    transform: rotate(45deg) translateY(-50%);
-
-    &--right {
-      right: 0%;
+    &__message {
+      width: 95%;
+      margin: 10px;
     }
   }
 }

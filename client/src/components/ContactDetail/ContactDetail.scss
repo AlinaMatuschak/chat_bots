@@ -1,0 +1,48 @@
+.detail {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  grid-template-rows: 100%;
+  height: 100%;
+  background-color: #becbd9;
+  
+  &__img {
+    width: inherit;
+    height: inherit;
+  }
+
+  &__inf {
+    padding: 15px 20px;
+    color: #5a666f;
+    font-size: 14px;
+    line-height: 1.1rem;
+    overflow: hidden;
+  }
+
+  &__name {
+    margin-bottom: 3px;
+    font-size: 18px;
+    color: #000;
+  }
+
+  @media (max-width: 800px) {
+    &__inf {
+      font-size: 11px;
+    }
+
+    &__name {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 670px) {
+    grid-template-columns: 50px 1fr;
+
+    &__name {
+      font-size: 16px;
+    }
+
+    &__description {
+      display: none;
+    }
+  }
+}

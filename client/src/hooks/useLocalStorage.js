@@ -12,9 +12,7 @@ export const useLocalStorage = (key, initialValue) => {
       return JSON.parse(jsonValue);
     }
 
-    return typeof initialValue === 'function'
-      ? initialValue()
-      : initialValue;
+    return initialValue;
   });
 
   useEffect(() => {
