@@ -29,8 +29,7 @@ export const ChatMessageList = memo(({ user, messages }) => {
       {getContactMessages().map((chatMessage, i, allMessages) => (
         <div
           ref={allMessages.length - 1 === i ? lastMessage : null}
-          // eslint-disable-next-line react/no-array-index-key
-          key={i}
+          key={chatMessage.id}
           className={classNames('chat__message', 'message', {
             'message--from-me': chatMessage.sender === user.id,
           })}
