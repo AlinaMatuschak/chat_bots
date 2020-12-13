@@ -12,7 +12,7 @@ export function SocketProvider({ user, children }) {
 
   useEffect(() => {
     const newSocket = io(
-      'http://localhost:3000',
+      'https://chat-bots-server.herokuapp.com/',
       { query: user },
     );
 
