@@ -1,11 +1,15 @@
 import React, { createRef, memo, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
+
 import { useContacts } from '../../contexts/ContactsProvider';
+import { useUser } from '../../contexts/UserProvider';
+
 import './ChatMessageList.scss';
 
-export const ChatMessageList = memo(({ user, messages }) => {
+export const ChatMessageList = memo(({ messages }) => {
   const { selectedContact } = useContacts();
   const lastMessage = createRef();
+  const user = useUser();
 
   useEffect(() => {
     scrollToBottom();

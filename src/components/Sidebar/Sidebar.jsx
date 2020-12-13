@@ -1,14 +1,18 @@
 import React, { useState, useMemo, useCallback, memo } from 'react';
+
 import { useContacts } from '../../contexts/ContactsProvider';
-import { isIncludeSubstring } from '../../helpers/isIncludeSubstring';
+
 import { ContactList } from '../ContactList';
 import { SidebarControlers } from '../SidebarControlers/SidebarControlers';
+import { isIncludeSubstring } from '../../helpers/isIncludeSubstring';
+
 import './Sidebar.scss';
 
 export const Sidebar = memo(({ hideSidebar }) => {
   const [visibleValue, setVisibleValue] = useState('online');
   const [searchValue, setSearchValue] = useState('');
   const { contacts } = useContacts();
+
   const showContacts = useMemo(() => {
     if (visibleValue === 'all') {
       return contacts

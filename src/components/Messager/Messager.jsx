@@ -1,12 +1,15 @@
 import React, { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
+
 import { useContacts } from '../../contexts/ContactsProvider';
+
 import { Chat } from '../Chat/Chat';
 import { Sidebar } from '../Sidebar';
 import { ToggleSidebar } from '../ToggleSidebar/ToggleSidebar';
+
 import './Messager.scss';
 
-export const Messager = memo(({ user }) => {
+export const Messager = memo(() => {
   const { selectedContact } = useContacts();
   const [isVisibleSideble, setIsVisibleSideble] = useState(true);
 
@@ -27,7 +30,7 @@ export const Messager = memo(({ user }) => {
 
       <div className="messager__chat-wrp">
         {selectedContact
-          && <Chat user={user} />}
+          && <Chat />}
       </div>
 
       <div

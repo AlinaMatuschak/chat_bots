@@ -1,17 +1,25 @@
 import React, { memo, useEffect, useState } from 'react';
+
 import { useContacts } from '../../contexts/ContactsProvider';
 import { useSocket } from '../../contexts/SocketProvider';
+
 import { ContactDetail } from '../ContactDetail';
-import './Chat.scss';
 import { ChatMessageList } from '../ChatMessageList/ChatMessageList';
 import { ChatForm } from '../ChatForm/ChatForm';
 
-export const Chat = memo(({ user }) => {
+import './Chat.scss';
+
+export const Chat = memo(() => {
   const [messages, setMessages] = useState([]);
-  const { socket, events: {
-    EVENT_GET_MESSAGES,
-    EVENT_GET_MESSAGE,
-  }, requestGetMessages, socketListener } = useSocket();
+  const {
+    socket,
+    events: {
+      EVENT_GET_MESSAGES,
+      EVENT_GET_MESSAGE,
+    },
+    requestGetMessages,
+    socketListener,
+  } = useSocket();
   const { selectedContact } = useContacts();
 
   useEffect(() => {
@@ -32,7 +40,7 @@ export const Chat = memo(({ user }) => {
       </div>
 
       <div className="chat__messages">
-        <ChatMessageList user={user} messages={messages} />
+        <ChatMessageList messages={messages} />
       </div>
 
       <div className="chat__form">

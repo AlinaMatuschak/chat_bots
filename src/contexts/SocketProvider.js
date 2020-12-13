@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import io from 'socket.io-client';
+import { useUser } from './UserProvider';
 
 const SocketContext = React.createContext();
 
@@ -13,8 +14,9 @@ export function useSocket() {
   return useContext(SocketContext);
 }
 
-export function SocketProvider({ user, children }) {
+export function SocketProvider({ children }) {
   const [socket, setSocket] = useState();
+  const user = useUser();
 
   useEffect(() => () => {
     socket.removeAllListeners();

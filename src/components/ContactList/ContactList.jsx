@@ -1,7 +1,9 @@
 import React, { memo, useCallback } from 'react';
 import classNames from 'classnames';
+
 import { useContacts } from '../../contexts/ContactsProvider';
 import { Contact } from '../Contact/Contact';
+
 import './ContactList.scss';
 
 export const ContactList = memo(({ contacts, hideSidebar }) => {

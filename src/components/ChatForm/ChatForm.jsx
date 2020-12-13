@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
+
 import { useContacts } from '../../contexts/ContactsProvider';
 import { useSocket } from '../../contexts/SocketProvider';
+
 import './ChatForm.scss';
 
 export const ChatForm = memo(() => {
