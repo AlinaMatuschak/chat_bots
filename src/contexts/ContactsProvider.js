@@ -15,19 +15,15 @@ export function useContacts() {
 export function ContactsProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
-  const { socket, events: { EVENT_GET_CONTACTS } } = useSocket();
+  const {
+    socket,
+    events: { EVENT_GET_CONTACTS },
+    socketListener,
+  } = useSocket();
 
   useEffect(() => {
-    if (!socket) {
-      return;
-    }
-
-    socket.on(EVENT_GET_CONTACTS, (socketContacts) => {
-      setContacts(socketContacts);
-    });
-
-    return () => socket.off(EVENT_GET_CONTACTS);
-  }, [socket, setContacts]);
+    socketListener(setContacts, EVENT_GET_CONTACTS);
+  }, [socket, socketListener]);
 
   const value = useMemo(() => ({
     contacts,

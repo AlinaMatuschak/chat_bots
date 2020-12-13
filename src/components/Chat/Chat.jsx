@@ -11,28 +11,19 @@ export const Chat = memo(({ user }) => {
   const { socket, events: {
     EVENT_GET_MESSAGES,
     EVENT_GET_MESSAGE,
-  } } = useSocket();
+  }, requestGetMessages, socketListener } = useSocket();
   const { selectedContact } = useContacts();
 
   useEffect(() => {
-    socket.emit(EVENT_GET_MESSAGES, selectedContact);
-  }, [selectedContact, EVENT_GET_MESSAGES]);
+    requestGetMessages(selectedContact);
+  }, [selectedContact]);
 
   useEffect(() => {
-    if (socket == null) {
-      return;
-    }
-
-    socket.on(EVENT_GET_MESSAGES, (messagesFromServer) => {
-      setMessages(messagesFromServer);
-    });
-
-    socket.on(EVENT_GET_MESSAGE, (newMessage) => {
+    socketListener(setMessages, EVENT_GET_MESSAGES);
+    socketListener((newMessage) => {
       setMessages(currentMessages => [...currentMessages, newMessage]);
-    });
-
-    return () => socket.off(EVENT_GET_MESSAGES, EVENT_GET_MESSAGE);
-  }, [socket, EVENT_GET_MESSAGES, EVENT_GET_MESSAGE]);
+    }, EVENT_GET_MESSAGE);
+  }, [socket, EVENT_GET_MESSAGES, EVENT_GET_MESSAGE, socketListener]);
 
   return (
     <div className="chat">

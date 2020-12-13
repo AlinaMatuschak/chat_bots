@@ -5,7 +5,7 @@ import './ChatForm.scss';
 
 export const ChatForm = memo(() => {
   const [message, setMessage] = useState('');
-  const { socket, events: { EVENT_SEND_MESSAGE } } = useSocket();
+  const { postMessage } = useSocket();
   const { selectedContact } = useContacts();
 
   const changeMessage = useCallback(({ target }) => {
@@ -19,13 +19,9 @@ export const ChatForm = memo(() => {
       return;
     }
 
-    socket.emit(EVENT_SEND_MESSAGE, {
-      text: message,
-      recipient: selectedContact,
-    });
-
+    postMessage(message, selectedContact);
     setMessage('');
-  }, [setMessage, message, selectedContact, EVENT_SEND_MESSAGE]);
+  }, [setMessage, message, selectedContact, postMessage]);
 
   return (
 
